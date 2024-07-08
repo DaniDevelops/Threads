@@ -1,11 +1,13 @@
 import AccountProfile from "@/components/forms/AccountProfile";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import React from "react";
 
 export default async function OnBoarding() {
   const user = await currentUser();
+  if (!user) return null;
 
-  const userInfo = {};
+  const userInfo = await fetchUser(user.id);
   const userData = {
     id: user?.id,
     objectId: userInfo?._id,
