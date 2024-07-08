@@ -36,7 +36,7 @@ interface Props {
 
 export default function AccountProfile({ user, btnTitle }: Props) {
   const [files, setFiles] = useState<File[]>([]);
-  const { startUpload } = useUploadThing("media");
+  const { startUpload, isUploading } = useUploadThing("media");
   const router = useRouter();
   const pathname = usePathname();
   const form = useForm<z.infer<typeof UserValidation>>({
@@ -55,6 +55,8 @@ export default function AccountProfile({ user, btnTitle }: Props) {
 
     if (hasImageChange) {
       const imgRes = await startUpload(files);
+
+      if (!imgRes) return;
 
       if (imgRes && imgRes[0].url) {
         data.profile_photo = imgRes[0].url;
@@ -200,7 +202,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
           )}
         />
 
-        <Button type="submit" className="bg-primary-500">
+        <Button type="submit" className="bg-primary-500" disabled={isUploading}>
           {btnTitle}
         </Button>
       </form>
