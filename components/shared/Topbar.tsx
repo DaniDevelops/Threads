@@ -15,7 +15,7 @@ export default function Topbar() {
       <div className="flex items-center gap-1">
         <div className="block md:hidden">
           <SignedIn>
-            <SignOutButton>
+            <SignOutButton redirectUrl="/sign-in">
               <div className="flex cursor-pointer">
                 <Image
                   src="/assets/logout.svg"
