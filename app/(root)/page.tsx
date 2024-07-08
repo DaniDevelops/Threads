@@ -6,7 +6,8 @@ import { currentUser } from "@clerk/nextjs/server";
 export default async function Home() {
   const result = await fetchThreads(1, 30);
   const user = await currentUser();
-  console.log(result);
+  if (!user) return null;
+
   return (
     <>
       <h1 className="head-text text-left">Home</h1>
