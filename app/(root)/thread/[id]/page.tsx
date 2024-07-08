@@ -15,6 +15,8 @@ export default async function Thread({ params }: { params: { id: string } }) {
   const userInfo = await fetchUser(user.id);
   if (!userInfo.onboarded) redirect("/onboarding");
   const thread = await fetchThreadById(id);
+
+  console.log(thread);
   return (
     <section className="relative">
       <div>

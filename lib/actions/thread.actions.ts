@@ -5,6 +5,7 @@ import User from "../models/user.model";
 import Thread from "../models/thread.model";
 import { connectToDb } from "../mongoose";
 import Community from "../models/community.model";
+import { ObjectId } from "mongoose";
 
 interface Params {
   text: string;
