@@ -1,4 +1,5 @@
 "use client";
+import { deleteThread } from "@/lib/actions/thread.actions";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
@@ -9,7 +10,7 @@ interface Props {
   parentId: string | null;
   isComment?: boolean;
 }
-export default async function DeleteThread({
+export default function DeleteThread({
   threadId,
   authorId,
   currentUserId,
@@ -29,7 +30,7 @@ export default async function DeleteThread({
       height={18}
       className="cursor-pointer object-contain"
       onClick={async () => {
-        await DeleteThread(JSON.parse(threadId), pathname);
+        await deleteThread(JSON.parse(threadId), pathname);
         if (!parentId || !isComment) {
           router.push("/");
         }
